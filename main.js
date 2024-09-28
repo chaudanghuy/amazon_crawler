@@ -15,7 +15,8 @@ function createWindow() {
         autoHideMenuBar: true, // Hides the menu
     });    
 
-    mainWindow.webContents.openDevTools();
+    // Open the DevTools
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.loadFile('index.html');
 }

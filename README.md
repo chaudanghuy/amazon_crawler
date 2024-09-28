@@ -1,9 +1,10 @@
-# amz_crawler
+# Amazon Crawler App
 
 A full-stack web application that crawls Amazon product data and reviews using Python Flask as the backend API and React as the frontend.
 
-## Overview
+![Image Description](images/app.png)
 
+## Overview
 This project consists of two main components:
 
 * **Backend**: A Python Flask API that crawls Amazon product data and reviews using Scrapy spiders.
