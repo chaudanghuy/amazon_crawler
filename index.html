@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Crawler App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="public/img/favicon-16x16.ico">  
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+    }
+    /* Ensure label and input have the same width */
+    .form-label {
+      min-width: 100px;
+      text-align: right;
+    }
+    .form-input {
+      flex: 1;
+      min-width: 150px;
+    }
+    /* Align inputs and labels in the same line */
+    .form-inline {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    /* Input, Select fields, and Labels should have consistent sizes */
+    .form-inline input,
+    .form-inline select {
+      min-width: 150px;
+      margin-left: 10px;
+    }
+    .form-inline span {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <!-- image header -->
+    <div class="text-center">
+      <img src="public/img/amz.jpg" alt="Amazon logo" width="80px" height="80px">
+    </div>
+    <div class="row">
+      <!-- Search Form Part -->
+      <div class="col-12">
+        <div class="border p-4">
+          <!-- Line 1: Radio options -->
+          <div class="mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="searchType" id="productUrl" value="productUrl" checked>
+              <label class="form-check-label" for="productUrl">URL sản phẩm</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="searchType" id="collectionUrl" value="collectionUrl">
+              <label class="form-check-label" for="collectionUrl">Search Collection URL</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="searchType" id="productList" value="productList">
+              <label class="form-check-label" for="productList">File danh sách sản phẩm (TXT)</label>
+            </div>   
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="searchType" id="asin" value="asin">
+              <label class="form-check-label" for="asin">ASIN</label>
+            </div>         
+          </div>
+
+          <!-- Line 2: Label + Text input -->
+          <div id="productUrlInput" class="form-inline line2Input">
+            <label for="inputSearch" class="form-label text-start">URL Đầu vào:</label>
+            <input type="text" class="form-input form-control" id="inputSearch" placeholder="" value="https://www.amazon.com/dp/B01LTHKYZ8">
+          </div>
+          <div id="collectionUrlInput" class="form-inline line2Input d-none">
+            <label for="saveFolder" class="form-label text-start">File txt sản phẩm:</label>
+            <input type="text" class="form-input form-control" id="saveFolder" placeholder="">
+            <button class="btn btn-primary ms-2" id="exploreBtn">...</button>
+          </div>
+          <div id="asinInput" class="form-inline line2Input d-none">
+            <label for="inputSearch" class="form-label text-start">ASIN:</label>
+            <input type="text" class="form-input form-control" id="inputSearch" placeholder="">
+          </div>
+
+          <!-- New Line: Page, Thread, Delay, Product Type -->
+          <div id="pageInput" class="form-inline d-none">
+            <label for="fromPage" class="form-label text-start">Trang:</label>
+            <input type="number" class="form-input form-control" id="fromPage" placeholder="1">  
+            <span>&nbsp; - &nbsp;</span>          
+            <input type="number" class="form-input form-control" id="threadCount" placeholder="2">                                    
+          </div>
+
+          <!-- New Line: Page, Thread, Delay, Product Type -->
+          <div id="threadInput" class="form-inline d-none">
+            <label for="threadCount" class="form-label text-start">Luồng:</label>
+            <input type="number" class="form-input form-control" id="threadCount" placeholder="1">            
+
+            <label for="delayRequest" class="form-label ms-3">Delay (giây):</label>
+            <input type="number" class="form-input form-control" id="delayRequest" placeholder="0" value="1">
+          </div>
+
+          <!-- Line 3: Save folder + Explorer icon -->
+          <div class="form-inline">
+            <label for="saveFolder" class="form-label text-start">Thư mục lưu:</label>
+            <input type="text" class="form-input form-control" id="saveFolder" placeholder="">
+            <button class="btn btn-primary ms-2" id="exploreBtn">...</button>
+          </div>
+
+          <!-- New Line: Page, Thread, Delay, Product Type -->
+          <div class="form-inline">
+            <label for="fromPage" class="form-label text-start">Tên lưu:</label>
+            <input type="text" class="form-input form-control" id="fromPage" placeholder="">            
+
+            <label for="threadCount" class="form-label ms-3">Zipcode:</label>
+            <input type="text" class="form-input form-control" id="threadCount" placeholder="">            
+          </div>
+
+          <!-- Line 4: Product Type Select box -->
+          <div class="form-inline">
+            <label for="productType" class="form-label text-start">Loại sản phẩm:</label>
+            <select class="form-input form-select" id="productType">
+              <option value="electronics">Merch</option>
+              <option value="books">Mặc định</option>
+              <option value="clothing">Book</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+
+          <!-- Line 1: Radio options -->
+          <div class="mb-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="downloadImage" id="downloadImage" value="">
+              <label class="form-check-label" for="downloadImage">Tải ảnh</label>
+            </div>                     
+          </div>
+
+          <!-- Line 6: Search and Stop buttons -->
+          <div class="d-flex justify-content-center btn-toolbar mt-3">
+            <button class="btn btn-primary me-2" id="searchBtn1">Bắt đầu</button>            
+            <button class="btn btn-secondary" id="stopBtn">Dừng</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Results Part -->
+      <div class="col-12 mt-4">
+        <div class="border p-4" id="resultsBox" style="background-color: white; height: 200px; display: none;">
+          <!-- Search results will be displayed here -->
+        </div>
+        <div class="mt-2">
+          <span id="statusText">Sẵn sàng</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
