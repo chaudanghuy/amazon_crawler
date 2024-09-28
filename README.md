@@ -1,6 +1,6 @@
 # Amazon Crawler App
 
-A full-stack web application that crawls Amazon product data and reviews using Python Flask as the backend API and React as the frontend.
+A full-stack web application that crawls Amazon product data and reviews using Python Flask as the backend API and Node as the frontend.
 
 ![Image Description](images/app.png)
 
@@ -8,7 +8,7 @@ A full-stack web application that crawls Amazon product data and reviews using P
 This project consists of two main components:
 
 * **Backend**: A Python Flask API that crawls Amazon product data and reviews using Scrapy spiders.
-* **Frontend**: A React application that consumes the backend API to display crawled data to the user.
+* **Frontend**: A NodeJS application that consumes the backend API to display crawled data to the user.
 
 ## Features
 
@@ -16,7 +16,7 @@ This project consists of two main components:
 * Scrape product reviews from individual product pages
 * Use ScrapeOps Proxy for proxy rotation and monitoring
 * Use ScrapeOps Monitor for monitoring and scheduling
-* React frontend to display crawled data
+* NodeJS frontend to display crawled data
 
 ## Requirements
 
@@ -26,7 +26,6 @@ This project consists of two main components:
 * ScrapeOps Proxy SDK (for backend)
 * ScrapeOps Monitor SDK (for backend)
 * Node.js 14+ (for frontend)
-* React 17+ (for frontend)
 
 ## Installation
 
@@ -52,7 +51,7 @@ This project consists of two main components:
 
 ### Frontend
 
-1. Run the React application: `npm start`
+1. Run the NodeJS application: `npm start`
 
 ### Run.sh
 
