@@ -19,7 +19,7 @@ def scrape():
     try:
         # execute command 
         subprocess.check_output(
-            f"scrapy crawl amazon_search_one_product -a url={url}", 
+            f"python -m scrapy crawl amazon_search_one_product -a url={url}", 
             shell=True,
             stderr=subprocess.STDOUT
         )
@@ -41,7 +41,7 @@ def scrape_collection():
 
     try:
         # execute command 
-        check_output("scrapy crawl amazon_search_product -a url=" + url + " -a from_page=" + from_page + " -a to_page=" + to_page + " -a thread=" + thread + " -a delay=" + delay, shell=True)
+        check_output("python -m scrapy crawl amazon_search_product -a url=" + url + " -a from_page=" + from_page + " -a to_page=" + to_page + " -a thread=" + thread + " -a delay=" + delay, shell=True)
         return jsonify({'message': 'Scraping started successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -56,7 +56,7 @@ def scrape_product_list():
 
     try:
         # execute command
-        check_output("scrapy crawl amazon_search_product -a file=" + file, shell=True)    
+        check_output("python -m scrapy crawl amazon_search_product -a file=" + file, shell=True)    
         return jsonify({'message': 'Scraping started successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -64,7 +64,7 @@ def scrape_product_list():
 @app.route('/scrape/get-result', methods=['GET'])
 def get_result():
     try:
-        files = glob.glob(os.path.join('data', '*.xlsx'))
+        files = glob.glob(os.path.join('amazon/data', '*.xlsx'))
 
         if not files:
             return jsonify({'error': 'No files found'}), 404

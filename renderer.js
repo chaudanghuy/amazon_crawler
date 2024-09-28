@@ -85,7 +85,7 @@ async function scrapeProduct() {
 
         // Display the download link
         document.getElementById('resultsBox').innerHTML += `
-                <p><a href="#" id="downloadLink">Tải kết quả (Excel)</a></p>
+                <p>Xem kết quả trong thư mục backend/amazon/data</p>
                 `;
     }
 
@@ -96,13 +96,14 @@ async function scrapeProduct() {
         const resultBlob = await scrapeService.getResult();
 
         // Create a link to download the result file
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'result.xlsx';  // Name of the file to be downloaded
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+        const url = window.URL.createObjectURL(new Blob([resultBlob.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'result.xlsx');
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
     });
 }
 
