@@ -120,7 +120,7 @@ async function scrapeProductCollection() {
 
         // Display the download link
         document.getElementById('resultsBox').innerHTML += `
-                <p><a href="#" id="downloadLink">Tải kết quả (Excel)</a></p>
+                <p>Xem kết quả trong thư mục backend/amazon/data</p>
                 `;
     }
 
@@ -154,7 +154,7 @@ async function scrapeProductAsin() {
 
         // Display the download link
         document.getElementById('resultsBox').innerHTML += `
-                <p><a href="#" id="downloadLink">Tải kết quả (Excel)</a></p>
+                <p>Xem kết quả trong thư mục backend/amazon/data</p>
                 `;
     }
 
@@ -188,7 +188,7 @@ async function scrapeProduct() {
 
         // Display the download link
         document.getElementById('resultsBox').innerHTML += `
-                <p><a href="#" id="downloadLink">Tải kết quả (Excel)</a></p>
+                <p>Xem kết quả trong thư mục backend/amazon/data</p>
                 `;
     }
 
