@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Starting React frontend..."
-npm start &
+npm install & npm start &
 
 echo "Activating Python virtual environment..."
 cd backend
